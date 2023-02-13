@@ -1,5 +1,3 @@
-//--url "https://www.google.com" --method "post" --body "body" --header "header"
-
 use crate::http_request::HttpData;
 use std::env;
 
@@ -10,7 +8,7 @@ fn checking_arguments(args: &Vec<String>) -> bool {
     ];
     let mut method_get = false;
     for arg in args {
-        if arg == "GET" {
+        if arg == "GET" || arg == "get" {
             method_get = true;
         }
         for flag in &valid_flags {
@@ -20,7 +18,7 @@ fn checking_arguments(args: &Vec<String>) -> bool {
         }
     }
     if method_get {
-        return counter == 2;
+        return counter >= 2;
     }
     return counter == valid_flags.len() / 2;
 }
@@ -55,4 +53,5 @@ pub fn args() {
         }
         index += 1;
     }
+    http_data.http_request();
 }
