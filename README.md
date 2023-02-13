@@ -2,7 +2,6 @@
 
 ## Requirements:
 
-- Arguments
-- http requests and posts
-- tests
-
+- [ ] Arguments
+- [ ] http requests and posts
+- [ ] tests
