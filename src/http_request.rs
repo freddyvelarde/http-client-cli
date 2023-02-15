@@ -7,22 +7,33 @@ pub struct HttpData {
     pub method: String,
 }
 
+fn normalize_header(headers: &Vec<String>) -> Vec<Vec<String>> {
+    let mut header_splited: Vec<Vec<String>> = vec![];
+    for header in headers {
+        let s: Vec<String> = header.split(':').map(String::from).collect();
+        header_splited.push(s);
+    }
+    return header_splited;
+}
+
 impl HttpData {
     fn get_request(&self) -> Result<(), isahc::Error> {
         let mut response = isahc::get(&self.url)?;
-        // println!("Status: {}", response.status());
         let body = response.text()?;
         println!("Body: {}", body);
         Ok(())
     }
 
     fn post_request(&self) -> Result<(), isahc::Error> {
-        let mut response = Request::post(&self.url)
-            .header("Content-Type", "application/json")
-            .body(format!(r#"{}"#, &self.body))?
-            .send()?;
+        let mut request = Request::post(&self.url);
 
-        // println!("{}", response.status());
+        for h in normalize_header(&self.header) {
+            request = request.header(&h[0], &h[1]);
+        }
+
+        let mut response = request.body(format!(r#"{}"#, &self.body))?.send()?;
+
+        println!("{}", response.status());
         println!("{}", response.text()?);
 
         Ok(())
@@ -37,6 +48,11 @@ impl HttpData {
             _ => Ok(()),
         };
     }
+    // pub fn print_multi_header(&self) {
+    //     let headers = normalize_header(&self.header);
+    //     println!("{:#?}", &headers[0][0]);
+    //     println!("{:#?}", &headers[0][1]);
+    // }
 
     // pub fn print_data(&self) {
     //     println!("url:  :) {}", self.url);

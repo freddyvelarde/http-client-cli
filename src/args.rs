@@ -54,5 +54,6 @@ pub fn args() {
         index += 1;
     }
     http_data.http_request();
+    // http_data.print_multi_header();
     // http_data.print_data();
 }
