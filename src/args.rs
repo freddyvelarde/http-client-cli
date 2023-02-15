@@ -20,7 +20,7 @@ fn checking_arguments(args: &Vec<String>) -> bool {
     if method_get {
         return counter >= 2;
     }
-    return counter == valid_flags.len() / 2;
+    return counter >= valid_flags.len() / 2;
 }
 
 pub fn args() {
@@ -29,7 +29,7 @@ pub fn args() {
         return print!("--url or --method or --body or --header flag missing");
     }
     let mut http_data = HttpData {
-        header: String::from(""),
+        header: vec![],
         body: String::from(""),
         method: String::from(""),
         url: String::from(""),
@@ -46,12 +46,13 @@ pub fn args() {
             "--body" | "-b" => {
                 http_data.body = args.get(index + 1).unwrap().to_string();
             }
-            "--header" | "-h" => {
-                http_data.header = args.get(index + 1).unwrap().to_string();
-            }
+            "--header" | "-h" => http_data
+                .header
+                .push(args.get(index + 1).unwrap().to_string()),
             _ => (),
         }
         index += 1;
     }
     http_data.http_request();
+    // http_data.print_data();
 }
