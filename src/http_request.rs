@@ -39,11 +39,27 @@ impl HttpData {
         Ok(())
     }
 
+    fn put_request(&self) -> Result<(), isahc::Error> {
+        let mut request = Request::put(&self.url);
+
+        for h in normalize_header(&self.header) {
+            request = request.header(&h[0], &h[1]);
+        }
+
+        let mut response = request.body(format!(r#"{}"#, &self.body))?.send()?;
+
+        println!("{}", response.status());
+        println!("{}", response.text()?);
+
+        Ok(())
+    }
+
     pub fn http_request(&self) {
         let _ = match self.method.as_str() {
             "GET" | "get" => self.get_request(),
             "POST" | "post" => self.post_request(),
-            "PUT" | "put" => Ok(println!("it's a PUT request")),
+            "PUT" | "put" => self.put_request(),
+            "PATCH" | "patch" => Ok(println!("it's a PATCH request")),
             "DELETE" | "delete" => Ok(println!("it's a DELETE request")),
             _ => Ok(()),
         };
