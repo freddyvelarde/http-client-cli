@@ -30,6 +30,7 @@ pub fn args() {
     }
     let mut http_data = HttpData {
         header: vec![],
+        path: vec![],
         body: String::from(""),
         method: String::from(""),
         url: String::from(""),
@@ -48,6 +49,9 @@ pub fn args() {
             }
             "--header" | "-h" => http_data
                 .header
+                .push(args.get(index + 1).unwrap().to_string()),
+            "--path" | "-p" => http_data
+                .path
                 .push(args.get(index + 1).unwrap().to_string()),
             _ => (),
         }

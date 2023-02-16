@@ -1,3 +1,4 @@
+use crate::helpers::normalize_header;
 use isahc::{prelude::*, Request};
 
 pub struct HttpData {
@@ -5,15 +6,7 @@ pub struct HttpData {
     pub body: String,
     pub url: String,
     pub method: String,
-}
-
-fn normalize_header(headers: &Vec<String>) -> Vec<Vec<String>> {
-    let mut header_splited: Vec<Vec<String>> = vec![];
-    for header in headers {
-        let s: Vec<String> = header.split(':').map(String::from).collect();
-        header_splited.push(s);
-    }
-    return header_splited;
+    pub path: Vec<String>,
 }
 
 impl HttpData {
@@ -75,5 +68,6 @@ impl HttpData {
     //     println!("method: {}", self.method);
     //     println!("body: {}", self.body);
     //     println!("header: {:#?}", self.header);
+    //     println!("path: {:#?}", self.path);
     // }
 }
