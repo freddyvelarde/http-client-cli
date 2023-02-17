@@ -32,6 +32,30 @@ impl HttpData {
         Ok(())
     }
 
+    fn delete_request(&self) -> Result<(), isahc::Error> {
+        let mut response = isahc::delete("http://example.com/resource")?;
+
+        println!("Response status: {}", response.status());
+        println!("Response body: {}", response.text()?);
+
+        Ok(())
+    }
+
+    fn patch_request(&self) -> Result<(), isahc::Error> {
+        let mut request = Request::patch(&self.url);
+
+        for h in normalize_header(&self.header) {
+            request = request.header(&h[0], &h[1]);
+        }
+
+        let mut response = request.body(format!(r#"{}"#, &self.body))?.send()?;
+
+        println!("{}", response.status());
+        println!("{}", response.text()?);
+
+        Ok(())
+    }
+
     fn put_request(&self) -> Result<(), isahc::Error> {
         let mut request = Request::put(&self.url);
 
@@ -52,8 +76,8 @@ impl HttpData {
             "GET" | "get" => self.get_request(),
             "POST" | "post" => self.post_request(),
             "PUT" | "put" => self.put_request(),
-            "PATCH" | "patch" => Ok(println!("it's a PATCH request")),
-            "DELETE" | "delete" => Ok(println!("it's a DELETE request")),
+            "PATCH" | "patch" => self.patch_request(),
+            "DELETE" | "delete" => self.delete_request(),
             _ => Ok(()),
         };
     }
