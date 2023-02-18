@@ -1,7 +1,7 @@
 <!-- ![main screen](./screenshots/rusp-cover.png) -->
-<center>
+<p align="center">
   <img src="./screenshots/rusp-cover.png" />
-</center>
+</p>
 
 ## Why it's name is RUSP?
 
