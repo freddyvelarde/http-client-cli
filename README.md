@@ -5,6 +5,7 @@ I tried to make reverse engineering to CURL application but my application is ex
 
 ## Requirements:
 
-- [x] Arguments
-- [x] http requests
-- [ ] Testing
+- [x] Arguments.
+- [x] http requests.
+- [x] Pretty print response.
+- [ ] Testing.
