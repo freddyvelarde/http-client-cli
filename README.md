@@ -5,15 +5,20 @@
 
 ## Why it's name is RUSP?
 
-it's a play on "Rust" and "curl" that could stand for "Rust Simple Protocol".
+It's a play on "Rust" and "curl" that could stand for "Rust Simple Protocol".
 
-I coded this application just for fun and learn more about [RUST](https://www.rust-lang.org/learn),
+I made this http client app just for fun and to improve my [RUST](https://www.rust-lang.org/learn) skills,
 I tried to make reverse engineering to CURL application but my application is extremely simple.
 
 ## Features:
 
 - [x] Arguments.
 - [x] http requests.
+  - [x] GET
+  - [x] POST
+  - [x] PUI
+  - [x] PATCH
+  - [x] DELETE
 - [x] Pretty print response.
 - [ ] Testing.
 
@@ -103,3 +108,8 @@ To make `delete`: '--method DELETE' or '-m DELETE'
 ```shell
 rusp -- -u https://jsonplaceholder.typicode.com/posts/1 -m DELETE
 ```
+
+## Missing and future features:
+
+- Still can't upload files like images or pdfs.
+- Some Http methods like HEAD or OPTIONS were not implemented.
