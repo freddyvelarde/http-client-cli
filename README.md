@@ -104,6 +104,12 @@ rusp --url https://jsonplaceholder.typicode.com/posts/1 --method PATCH -b '{"tit
 rusp --url https://jsonplaceholder.typicode.com/posts/1 --method DELETE
 ```
 
+Multiheaders:
+
+```bash
+rusp -u https://jsonplaceholder.typicode.com/posts -m POST -h 'Content-Type: application/json' -h 'access-token: your secret yoken'
+```
+
 ## Missing and future features:
 
 - Still can't upload files like images or pdfs.
