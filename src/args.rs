@@ -8,7 +8,7 @@ fn checking_arguments(args: &Vec<String>) -> bool {
     ];
     let mut method_get = false;
     for arg in args {
-        if arg == "GET" || arg == "get" {
+        if arg == "GET" || arg == "get" || arg == "DELETE" || arg == "delete" {
             method_get = true;
         }
         for flag in &valid_flags {
@@ -58,6 +58,4 @@ pub fn args() {
         index += 1;
     }
     http_data.http_request();
-    // http_data.print_multi_header();
-    // http_data.print_data();
 }
