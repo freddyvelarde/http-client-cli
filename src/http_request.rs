@@ -12,12 +12,8 @@ pub struct HttpData {
 impl HttpData {
     fn get_request(&self) -> Result<(), isahc::Error> {
         let mut response = isahc::get(&self.url)?;
-        let body = response.text()?;
         println!("Status: {}", response.status());
-        // // println!(" ");
-        // // println!(" ");
-        // // println!(" ");
-        print_in_json_format(body);
+        print_in_json_format(response.text()?);
         Ok(())
     }
 
