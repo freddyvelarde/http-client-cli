@@ -16,7 +16,8 @@ Usage:
  -m, --method               HTTP methods: GET, POST, PUT, PATCH, DELETE (--method GET | POST | PUT | PATCH | DELETE)
  -b, --body                 Body: http body (--body '{}') 
  -h, --header               Header: (--header 'Content-Type: application/json') 
- --help                     Get help for commands
+ -H, --help                 Get help for commands
+ -b, --version              Version information
         "#,
         body
     );
@@ -44,7 +45,7 @@ fn checking_arguments(args: &Vec<String>) -> bool {
     if method_get {
         return counter >= 2;
     }
-    if !counter >= valid_flags.len() / 2 {
+    if !(counter >= valid_flags.len() / 2) {
         println!(
             r#"
 RUSP: Missing some of these flags: --header --url --body --method
