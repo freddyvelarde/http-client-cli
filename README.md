@@ -6,13 +6,12 @@
 
 It's a play on "Rust" and "curl" that could stand for "Rust Simple Protocol".
 
-I made this http client app just for fun and to improve my [RUST](https://www.rust-lang.org/learn) skills,
-I tried to make reverse engineering to CURL application but my application is extremely simple.
+I developed this HTTP client app for the purpose of having fun and improving my Rust skills. While attempting to reverse-engineer the CURL application, I created a relatively simple application.
 
 ## Features:
 
 - [x] Arguments.
-- [x] http requests.
+- [x] Http requests.
   - [x] GET
   - [x] POST
   - [x] PUI
@@ -70,23 +69,24 @@ source ~/.bashrc
 
 ## Usage:
 
-To make `get` requests, use the 'method GET' flag '-m GET'
+Run the help and version command:
 
 ```bash
-rusp --url https://jsonplaceholder.typicode.com/users --method GET
+rusp --help
+rusp --version
+```
+
+```bash
+rusp --url https://jsonplaceholder.typicode.com/users/1 --method GET
 ```
 
 ![get screen](./screenshots/get-req.png)
 
-To make `post`: 'method POST' or '-m POST'
-
 ```bash
-rusp --url https://jsonplaceholder.typicode.com/posts --method POST --body '{"title": "title post", "content": "content post"}' -- 'Content-Type: application/json'
+rusp --url https://jsonplaceholder.typicode.com/posts --method POST --body '{"title": "title post", "content": "content post"}' --header 'Content-Type: application/json'
 ```
 
 ![post screen](./screenshots/post-req.png)
-
-To make `put`: 'method PUT' or '-m PUT'
 
 ```bash
 rusp --url https://jsonplaceholder.typicode.com/posts/1 --method PUT --body '{"id": 1, "title": "foo", "body": "bar", "userId": 1}' --header 'Content-Type: application/json'
@@ -94,15 +94,11 @@ rusp --url https://jsonplaceholder.typicode.com/posts/1 --method PUT --body '{"i
 
 ![post screen](./screenshots/put-req.png)
 
-To make `patch`: 'method PATCH' or '-m PATCH'
-
 ```bash
-rusp --url https://jsonplaceholder.typicode.com/posts/1 -method PATCH -b '{"title": "foo"}' --header 'Content-Type: application/json'
+rusp --url https://jsonplaceholder.typicode.com/posts/1 --method PATCH -b '{"title": "foo"}' --header 'Content-Type: application/json'
 ```
 
 ![post screen](./screenshots/patch-req.png)
-
-To make `delete`: 'method DELETE' or '-m DELETE'
 
 ```bash
 rusp --url https://jsonplaceholder.typicode.com/posts/1 --method DELETE
@@ -112,4 +108,4 @@ rusp --url https://jsonplaceholder.typicode.com/posts/1 --method DELETE
 
 - Still can't upload files like images or pdfs.
 - Some Http methods like HEAD or OPTIONS were not implemented.
-- Auto Installer.
+- Autoinstaller.
