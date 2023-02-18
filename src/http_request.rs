@@ -13,9 +13,8 @@ impl HttpData {
     fn get_request(&self) -> Result<(), isahc::Error> {
         let mut response = isahc::get(&self.url)?;
 
-        // println!("----------------- RESPONSE -----------------");
-        // println!("\x1b[33mStatus: {}\x1b[0m,);
         print_pretty_response(response.text()?, response.status().to_string());
+
         Ok(())
     }
 
@@ -79,17 +78,4 @@ impl HttpData {
             _ => Ok(()),
         };
     }
-    // pub fn print_multi_header(&self) {
-    //     let headers = normalize_header(&self.header);
-    //     println!("{:#?}", &headers[0][0]);
-    //     println!("{:#?}", &headers[0][1]);
-    // }
-
-    // pub fn print_data(&self) {
-    //     println!("url:  :) {}", self.url);
-    //     println!("method: {}", self.method);
-    //     println!("body: {}", self.body);
-    //     println!("header: {:#?}", self.header);
-    //     println!("path: {:#?}", self.path);
-    // }
 }

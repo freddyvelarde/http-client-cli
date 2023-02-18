@@ -34,20 +34,3 @@ pub fn print_pretty_response(data: String, status: String) -> Result<()> {
 
     Ok(())
 }
-
-// pub fn print_pretty_json() {
-//     let value = json!({
-//         "name": "Alice",
-//         "age": 25,
-//         "pets": ["dog", "cat"],
-//         "address": {
-//             "street": "123 Main St",
-//             "city": "Anytown",
-//             "state": "CA",
-//             "zip": "12345"
-//         }
-//     });
-//
-//     let pretty_json = to_string_pretty(&value).unwrap();
-//     println!("{}", pretty_json);
-// }
