@@ -29,7 +29,7 @@ fn checking_arguments(args: &Vec<String>) -> bool {
     ];
     let mut method_get = false;
     for arg in args {
-        if arg == "--help" {
+        if arg == "--help" || arg == "-H" || arg == "--version" || arg == "-v" {
             return true;
         }
         if arg == "GET" || arg == "get" || arg == "DELETE" || arg == "delete" {
@@ -44,7 +44,16 @@ fn checking_arguments(args: &Vec<String>) -> bool {
     if method_get {
         return counter >= 2;
     }
-    return counter >= valid_flags.len() / 2;
+    if !counter >= valid_flags.len() / 2 {
+        println!(
+            r#"
+RUSP: Missing some of these flags: --header --url --body --method
+RUSP ADVICE: try 'rusp --help'
+        "#
+        );
+        return false;
+    }
+    return true;
 }
 
 pub fn args() {
@@ -77,7 +86,8 @@ pub fn args() {
             "--path" | "-p" => http_data
                 .path
                 .push(args.get(index + 1).unwrap().to_string()),
-            "--help" => help_arg(),
+            "--help" | "-H" => help_arg(),
+            "--version" | "-v" => println!("RUSP version 0.1.0 Beta"),
             _ => {}
         }
         index += 1;

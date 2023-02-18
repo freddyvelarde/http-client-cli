@@ -1,4 +1,5 @@
-<!-- ![main screen](./screenshots/rusp-cover.png) -->
+<! ![main screen](./screenshots/rusp-cover.png) -->
+
 <p align="center">
   <img src="./screenshots/rusp-cover.png" />
 </p>
@@ -56,12 +57,12 @@ cargo run
 4. Copy and paste this line in your .zshrc if you're zsh user or .bashrc if you're bash user:
 
 ```bash
-alias rusp="~/.config/rusp/target/debug/rusp"
+alias rusp="~/.config/rusp/target/debug/rusp --"
 ```
 
 5. Finally run this command depending if you're bash or zsh user (or even another unix shell like fish)
 
-```shell
+```bash
 # zsh users
 source ~/.zshrc
 
@@ -71,42 +72,42 @@ source ~/.bashrc
 
 ## Usage:
 
-To make `get` requests, use the '--method GET' flag '-m GET'
+To make `get` requests, use the 'method GET' flag '-m GET'
 
-```shell
-rusp -- --url https://jsonplaceholder.typicode.com/users --method GET
+```bash
+rusp  --url https://jsonplaceholder.typicode.com/users --method GET
 ```
 
 ![get screen](./screenshots/get-req.png)
 
-To make `post`: '--method POST' or '-m POST'
+To make `post`: 'method POST' or '-m POST'
 
-```shell
-rusp -- --url https://jsonplaceholder.typicode.com/posts --method POST --body '{"title": "title post", "content": "content post"}' -- 'Content-Type: application/json'
+```bash
+rusp --url https://jsonplaceholder.typicode.com/posts --method POST --body '{"title": "title post", "content": "content post"}' -- 'Content-Type: application/json'
 ```
 
 ![post screen](./screenshots/post-req.png)
 
-To make `put`: '--method PUT' or '-m PUT'
+To make `put`: 'method PUT' or '-m PUT'
 
-```shell
-rusp -- --url https://jsonplaceholder.typicode.com/posts/1 --method PUT --body '{"id": 1, "title": "foo", "body": "bar", "userId": 1}' --header 'Content-Type: application/json'
+```bash
+rusp --url https://jsonplaceholder.typicode.com/posts/1 --method PUT --body '{"id": 1, "title": "foo", "body": "bar", "userId": 1}' --header 'Content-Type: application/json'
 ```
 
 ![post screen](./screenshots/put-req.png)
 
-To make `patch`: '--method PATCH' or '-m PATCH'
+To make `patch`: 'method PATCH' or '-m PATCH'
 
-```shell
-rusp -- --url https://jsonplaceholder.typicode.com/posts/1 -method PATCH -b '{"title": "foo"}' --header 'Content-Type: application/json'
+```bash
+rusp --url https://jsonplaceholder.typicode.com/posts/1 -method PATCH -b '{"title": "foo"}' --header 'Content-Type: application/json'
 ```
 
 ![post screen](./screenshots/patch-req.png)
 
-To make `delete`: '--method DELETE' or '-m DELETE'
+To make `delete`: 'method DELETE' or '-m DELETE'
 
-```shell
-rusp -- -u https://jsonplaceholder.typicode.com/posts/1 -m DELETE
+```bash
+rusp --url https://jsonplaceholder.typicode.com/posts/1 --method DELETE
 ```
 
 ## Missing and future features:
