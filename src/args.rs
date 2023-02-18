@@ -1,6 +1,27 @@
 use crate::http_request::HttpData;
 use std::env;
 
+fn help_arg() {
+    let body = r#"{"id": 1, "title": "foo", "body": "bar", "userId": 1}"#;
+    println!(
+        r#"
+██████  ██    ██ ███████ ███████ 
+██   ██ ██    ██ ██      ██    ██
+██████  ██    ██ ███████ ██    ██
+██   ██ ██    ██      ██ ███████  
+██   ██  ██████  ███████ ██   
+
+Usage:  
+ -u, --url                  HTTP url direction (--url https://yourapi.dev)
+ -m, --method               HTTP methods: GET, POST, PUT, PATCH, DELETE (--method GET | POST | PUT | PATCH | DELETE)
+ -b, --body                 Body: http body (--body '{}') 
+ -h, --header               Header: (--header 'Content-Type: application/json') 
+ --help                     Get help for commands
+        "#,
+        body
+    );
+}
+
 fn checking_arguments(args: &Vec<String>) -> bool {
     let mut counter = 0;
     let valid_flags = vec![
@@ -8,6 +29,9 @@ fn checking_arguments(args: &Vec<String>) -> bool {
     ];
     let mut method_get = false;
     for arg in args {
+        if arg == "--help" {
+            return true;
+        }
         if arg == "GET" || arg == "get" || arg == "DELETE" || arg == "delete" {
             method_get = true;
         }
@@ -26,7 +50,7 @@ fn checking_arguments(args: &Vec<String>) -> bool {
 pub fn args() {
     let args: Vec<String> = env::args().collect();
     if !checking_arguments(&args) {
-        return print!("--url or --method or --body or --header flag missing");
+        return;
     }
     let mut http_data = HttpData {
         header: vec![],
@@ -53,7 +77,8 @@ pub fn args() {
             "--path" | "-p" => http_data
                 .path
                 .push(args.get(index + 1).unwrap().to_string()),
-            _ => (),
+            "--help" => help_arg(),
+            _ => {}
         }
         index += 1;
     }
