@@ -1,4 +1,4 @@
-use crate::helpers::{normalize_header, print_in_json_format};
+use crate::helpers::{normalize_header, print_pretty_response};
 use isahc::{prelude::*, Request};
 
 pub struct HttpData {
@@ -12,8 +12,10 @@ pub struct HttpData {
 impl HttpData {
     fn get_request(&self) -> Result<(), isahc::Error> {
         let mut response = isahc::get(&self.url)?;
-        println!("Status: {}", response.status());
-        print_in_json_format(response.text()?);
+
+        // println!("----------------- RESPONSE -----------------");
+        // println!("\x1b[33mStatus: {}\x1b[0m,);
+        print_pretty_response(response.text()?, response.status().to_string());
         Ok(())
     }
 
@@ -26,9 +28,7 @@ impl HttpData {
 
         let mut response = request.body(format!(r#"{}"#, &self.body))?.send()?;
 
-        println!("{}", response.status());
-        // println!("{:#?}", response.text()?);
-        print_in_json_format(response.text()?);
+        print_pretty_response(response.text()?, response.status().to_string());
 
         Ok(())
     }
@@ -36,8 +36,7 @@ impl HttpData {
     fn delete_request(&self) -> Result<(), isahc::Error> {
         let mut response = isahc::delete("http://example.com/resource")?;
 
-        println!("Response status: {}", response.status());
-        println!("Response body: {}", response.text()?);
+        print_pretty_response(response.text()?, response.status().to_string());
 
         Ok(())
     }
@@ -51,8 +50,7 @@ impl HttpData {
 
         let mut response = request.body(format!(r#"{}"#, &self.body))?.send()?;
 
-        println!("{}", response.status());
-        println!("{}", response.text()?);
+        print_pretty_response(response.text()?, response.status().to_string());
 
         Ok(())
     }
@@ -66,8 +64,7 @@ impl HttpData {
 
         let mut response = request.body(format!(r#"{}"#, &self.body))?.send()?;
 
-        println!("{}", response.status());
-        println!("{}", response.text()?);
+        print_pretty_response(response.text()?, response.status().to_string());
 
         Ok(())
     }
