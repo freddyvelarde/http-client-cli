@@ -1,7 +1,7 @@
 <!-- ![main screen](./screenshots/rusp-cover.png) -->
-<div style="display: flex; justify-content: center">
+<center>
   <img src="./screenshots/rusp-cover.png" />
-</div>
+</center>
 
 ## Why it's name is RUSP?
 
@@ -103,4 +103,3 @@ To make `delete`: '--method DELETE' or '-m DELETE'
 ```shell
 rusp -- -u https://jsonplaceholder.typicode.com/posts/1 -m DELETE
 ```
-
