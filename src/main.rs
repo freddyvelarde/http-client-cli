@@ -5,4 +5,5 @@ use args::args;
 
 fn main() {
     args();
+    // print_pretty_json()
 }

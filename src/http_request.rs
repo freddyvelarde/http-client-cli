@@ -1,4 +1,4 @@
-use crate::helpers::normalize_header;
+use crate::helpers::{normalize_header, print_in_json_format};
 use isahc::{prelude::*, Request};
 
 pub struct HttpData {
@@ -13,7 +13,11 @@ impl HttpData {
     fn get_request(&self) -> Result<(), isahc::Error> {
         let mut response = isahc::get(&self.url)?;
         let body = response.text()?;
-        println!("Body: {}", body);
+        println!("Status: {}", response.status());
+        // // println!(" ");
+        // // println!(" ");
+        // // println!(" ");
+        print_in_json_format(body);
         Ok(())
     }
 
@@ -27,7 +31,8 @@ impl HttpData {
         let mut response = request.body(format!(r#"{}"#, &self.body))?.send()?;
 
         println!("{}", response.status());
-        println!("{}", response.text()?);
+        // println!("{:#?}", response.text()?);
+        print_in_json_format(response.text()?);
 
         Ok(())
     }

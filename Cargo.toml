@@ -7,3 +7,4 @@ edition = "2021"
 
 [dependencies]
 isahc = "1.7.2"
+serde_json = "1.0.93"
