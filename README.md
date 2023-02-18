@@ -1,5 +1,3 @@
-<! ![main screen](./screenshots/rusp-cover.png) -->
-
 <p align="center">
   <img src="./screenshots/rusp-cover.png" />
 </p>
@@ -75,7 +73,7 @@ source ~/.bashrc
 To make `get` requests, use the 'method GET' flag '-m GET'
 
 ```bash
-rusp  --url https://jsonplaceholder.typicode.com/users --method GET
+rusp --url https://jsonplaceholder.typicode.com/users --method GET
 ```
 
 ![get screen](./screenshots/get-req.png)
@@ -114,3 +112,4 @@ rusp --url https://jsonplaceholder.typicode.com/posts/1 --method DELETE
 
 - Still can't upload files like images or pdfs.
 - Some Http methods like HEAD or OPTIONS were not implemented.
+- Auto Installer.
